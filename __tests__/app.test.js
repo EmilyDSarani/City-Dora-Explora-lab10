@@ -26,8 +26,8 @@ describe('app routes', () => {
     test('returns the weather', async() => {
 
       const expectation = {
-        'date': expect.any(String),
-        'weather': expect.any(String)
+        'time': expect.any(String),
+        'forecast': expect.any(String)
       };
 
       const data = await fakeRequest(app)
@@ -35,7 +35,7 @@ describe('app routes', () => {
         .expect('Content-Type', /json/)
         .expect(200);
 
-      expect(data.body).toEqual(expect.arrayContaining(expectation));
+      expect(data.body).toEqual(expect.arrayContaining([expectation]));
     });
   });
 });
