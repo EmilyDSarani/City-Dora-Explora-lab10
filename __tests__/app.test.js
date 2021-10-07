@@ -9,12 +9,13 @@ describe('app routes', () => {
     test('returns the location', async() => {
 
       const expectation = {
-        'formatted_query': 'Seattle, WA, USA',
-        'latitude': '47.606210',
-        'longitude': '-122.332071'
+        'formatted_query': expect.any(String),
+        'latitude': expect.any(String),
+        'longitude': expect.any(String)
       };
+
       const data = await fakeRequest(app)
-        .get('/location')
+        .get('/location?search=atlanta')
         .expect('Content-Type', /json/)
         .expect(200);
 
