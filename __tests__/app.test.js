@@ -21,5 +21,21 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
+
+
+    test('returns the weather', async() => {
+
+      const expectation = {
+        'time': expect.any(String),
+        'forecast': expect.any(String)
+      };
+
+      const data = await fakeRequest(app)
+        .get('/weather?daily&lat=38.123&lon=-78.543')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expect.arrayContaining([expectation]));
+    });
   });
 });
