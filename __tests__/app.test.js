@@ -21,5 +21,20 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
+
+    test('returns the weather', async() => {
+
+      const expectation = {
+        'date': expect.any(String),
+        'weather': expect.any(String)
+      };
+
+      const data = await fakeRequest(app)
+        .get('/location?search=atlanta')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
   });
 });
