@@ -37,5 +37,20 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expect.arrayContaining([expectation]));
     });
+
+    // test('returns the business', async() => {
+
+    //   const expectation = {
+    //     'time': expect.any(String),
+    //     'forecast': expect.any(String)
+    //   };
+
+    //   const data = await fakeRequest(app)
+    //     .get('/business)
+    //     .expect('Content-Type', /json/)
+    //     .expect(200);
+
+    //   expect(data.body).toEqual(expect.arrayContaining([expectation]));
+    // });
   });
 });
