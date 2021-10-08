@@ -38,19 +38,27 @@ describe('app routes', () => {
       expect(data.body).toEqual(expect.arrayContaining([expectation]));
     });
 
-    // test('returns the business', async() => {
+    test('returns the business', async() => {
 
-    //   const expectation = {
-    //     'time': expect.any(String),
-    //     'forecast': expect.any(String)
-    //   };
+      [
+        'name',
+        'image_url',
+        'price',
+        'rating',
+        'url'
+      ];
 
-    //   const data = await fakeRequest(app)
-    //     .get('/business)
-    //     .expect('Content-Type', /json/)
-    //     .expect(200);
+      const data = await fakeRequest(app)
+        .get('/reviews?latitude=38.123&longitude=-78.543')
+        .expect('Content-Type', /json/)
+        .expect(200);
 
-    //   expect(data.body).toEqual(expect.arrayContaining([expectation]));
-    // });
+      expect(data.body[0]).toHaveProperty('name', expect.any(String)); //does this very first property in this value have a string
+      expect(data.body[0]).toHaveProperty('image_url', expect.any(String)); //this is actually just coded in here to read it overall
+      expect(data.body[0]).toHaveProperty('price', expect.any(String)); //I can see how this would be useful if you work for a car company, or like...even...idk...like for fun.
+      expect(data.body[0]).toHaveProperty('rating', expect.any(Number));
+      expect(data.body[0]).toHaveProperty('url', expect.any(String));
+
+    });
   });
 });
